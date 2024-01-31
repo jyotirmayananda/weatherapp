@@ -1,13 +1,13 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import jQuery from "jquery";
 import Button from "./../components/button";
 import Footer from "../components/footer";
-import rainIcon from "./../assets/rain (1).png";
-import windIcon from "./../assets/windy.png";
-import humidity from "./../assets/humidity.png";
+// import rainIcon from "./../assets/rain (1).png";
+// import windIcon from "./../assets/windy.png";
+// import humidity from "./../assets/humidity.png";
 import FutureWeatherComponent from "../components/futureWeatherComponent";
 import navigate from "../inc/scripts/utilities";
-import ForecastWeatherItems from "../components/forecastWeatherItems";
+// import ForecastWeatherItems from "../components/forecastWeatherItems";
 import Spinner from "../components/spinner";
 import Ripple1 from "./../assets/ripple1.gif";
 import Location from "./../assets/map.png";
@@ -15,24 +15,15 @@ import * as formHandler from "./../apis/getCurrentWeather";
 import { db } from "../backend/app_backend";
 import getGeolocation from "../apis/getGeolocation";
 import { getCurrentDate } from "../inc/scripts/utilities";
-import Thunder from "./../assets/static/thunder.svg";
+
 import Day from "./../assets/static/day.svg";
-import Drizzle from "./../assets/static/rainy-5.svg";
-import Rainy from "./../assets/static/rainy-7.svg";
-import Snowy from "./../assets/static/snowy-6.svg";
-import FreezingRain from "./../assets/static/freezing-rain.svg";
-import Misty from "./../assets/static/mist.svg";
-import BrokenClouds from "./../assets/static/broken-clouds.svg";
-import OvercastClouds from "./../assets/static/overcast-clouds.svg";
-import ScatteredClouds from "./../assets/static/scattered-clouds.svg";
-import FewClouds from "./../assets/static/few-clouds.svg";
-import Haze from "./../assets/static/haze.svg";
+
 import HumidityIcon from "./../assets/humidity-icon.svg";
 import WindIcon from "./../assets/wind-icon.svg";
 import PressureIcon from "./../assets/pressure-icon.svg";
 
 const WeatherApp = () => {
-	//check if the user navigated from the home page
+	
 	if (!db.get("HOME_PAGE_SEEN")) {
 		navigate("/");
 	}
@@ -101,69 +92,12 @@ const WeatherApp = () => {
 		return uiData;
 	};
 
-	let forecastData = [
-		{
-			name: ["Keketu"],
-			icon: [Day],
-			unit: ["10"],
-		},
-
-		{
-			name: ["Sango"],
-			icon: [Thunder],
-			unit: ["50"],
-		},
-	];
-
+	
 	const showMoreWeather = () => {
 		navigate("weathermain");
 	};
 
-	const uiForeCastData = forecastData.map((data, index) => {
-		return (
-			<ForecastWeatherItems
-				key={data.name}
-				name={data.name}
-				icon={data.icon}
-				weatherUnit={data.unit}
-			/>
-		);
-	});
-	const showForecastWeather = () => {
-		navigate("/forecast");
-	};
-	//create the weather forecast component
-	const UtilityForecastTags = () => {
-		return (
-			<section className="cmp d-flex align-items-center justify-content-center flex-column my-5">
-				<br />
-				<br />
-				<br />
-
-				<section className="d-flex align-items-center justify-content-center my-5">
-					{uiForeCastData}
-				</section>
-
-				<section className="d-flex align-items-center justify-content-center">
-					<Button
-						text="forecast weather"
-						className="shadow brand-btn-2 toggle-width-3"
-						onClick={showForecastWeather}
-					/>
-				</section>
-			</section>
-		);
-	};
-
-	//function to check if the dashboard icon was clicked
-
-	const beginWeatherForecast = () => {
-		addUtilityComponentHeight();
-		//change the variable to hold the current component to insert
-		setComponentToInsert(<UtilityForecastTags />);
-		
-	};
-
+	
 	const SearchComponent = () => {
 		const [searchValue, setSearchValue] = useState("");
 		return (
